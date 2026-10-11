@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zorfine Teach - High-Performance Websites That Convert</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0f0f0f;
+      --secondary: #1a1a1a;
+      --accent: #3b82f6;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --border: #2a2a2a;
+      --success: #10b981;
+      --error: #ef4444;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      background: var(--primary);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 64px;
+      z-index: 1000;
+      gap: 2rem;
+    }
+
+    nav .logo {
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      margin-left: auto;
+      list-style: none;
+    }
+
+    nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.3s;
+    }
+
+    nav .nav-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 24px;
+        gap: 1rem;
+      }
+      nav .nav-links {
+        display: none;
+      }
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      margin-top: 64px;
+      min-height: 100vh;
+      padding: 80px 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      margin-bottom: 32px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    .eyebrow::before {
+      content: '●';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.2;
+      margin-bottom: 32px;
+      font-weight: 700;
+    }
+
+    .hero-description {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      line-height: 1.8;
+      max-width: 500px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 32px;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .badge::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      background: rgba(26, 26, 26, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .window-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .window-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #444;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .metric {
+      background: rgba(26, 26, 26, 0.8);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .chart-line {
+      height: 80px;
+      margin: 16px 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.3) 50%, transparent 100%);
+      border-bottom: 2px solid var(--accent);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 968px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 40px 24px;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== SOCIAL PROOF ===== */
+    .social-proof {
+      padding: 64px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 968px) {
+      .social-proof {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 40px 24px;
+      }
+    }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    .section-eyebrow::before {
+      content: '●';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .section-header h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== SERVICES GRID ===== */
+    .services {
+      padding: 80px 64px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .service-card {
+      background: rgba(26, 26, 26, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .service-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .service-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 40px;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .service-card h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .service-description {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .service-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .service-link:hover {
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .services {
+        padding: 40px 24px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CASE STUDIES ===== */
+    .case-studies {
+      padding: 80px 64px;
+      border-top: 1px solid var(--border);
+    }
+
+    .case-studies-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .case-study {
+      background: rgba(26, 26, 26, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .case-study:hover {
+      border-color: var(--accent);
+    }
+
+    .case-study-image {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .case-study-content {
+      padding: 32px;
+    }
+
+    .case-study-label {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .case-study-content h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .case-study-description {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+
+    .case-study-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .case-metric {
+      text-align: center;
+    }
+
+    .case-metric-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .case-metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .case-study-stack {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-top: 16px;
+      margin-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 968px) {
+      .case-studies {
+        padding: 40px 24px;
+      }
+
+      .case-studies-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== PROCESS SECTION ===== */
+    .process {
+      padding: 80px 64px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .process-step {
+      background: rgba(26, 26, 26, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .process-step-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .process-step h4 {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .process-step-description {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 968px) {
+      .process {
+        padding: 40px 24px;
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ===== PRICING ===== */
+    .pricing {
+      padding: 80px 64px;
+      border-top: 1px solid var(--border);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .pricing-card {
+      background: rgba(26, 26, 26, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      transform: scale(1.05);
+      background: rgba(59, 130, 246, 0.05);
+    }
+
+    .pricing-header {
+      margin-bottom: 24px;
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .pricing-card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .pricing-price {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .pricing-period {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .pricing-description {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 32px;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: bold;
+      min-width: 20px;
+    }
+
+    .pricing-cta {
+      width: 100%;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .pricing-card.featured .pricing-cta {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .pricing-cta:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 1024px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials {
+      padding: 80px 64px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .testimonial {
+      background: rgba(26, 26, 26, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .star {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .testimonial-text {
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.8;
+      flex-grow: 1;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      gap: 16px;
+      align-items: flex-end;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .author-title {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 968px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== FORM SECTION ===== */
+    .form-section {
+      padding: 80px 64px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .form-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .form-content h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .form-content p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+
+    .form-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 14px;
+    }
+
+    .benefit::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: bold;
+      min-width: 20px;
+      font-size: 16px;
+    }
+
+    .form-promo {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .form-promo-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .form-promo-text {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .form-wrapper {
+      background: rgba(26, 26, 26, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    .form-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .form-submit:hover:not(:disabled) {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .form-message {
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+    }
+
+    .form-message.success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      color: var(--success);
+      display: block;
+    }
+
+    .form-message.error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: var(--error);
+      display: block;
+    }
+
+    .payment-button {
+      width: 100%;
+      padding: 16px;
+      margin-top: 12px;
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .payment-button:hover {
+      background: rgba(59, 130, 246, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .form-section {
+        padding: 40px 24px;
+      }
+
+      .form-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .form-wrapper {
+        padding: 24px;
+      }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--secondary);
+      border-top: 1px solid var(--border);
+      padding: 40px 64px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        padding: 24px;
+      }
+    }
+
+    /* ===== UTILITIES ===== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section {
+      scroll-margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">ZORFINE TEACH</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#case-studies">Case Studies</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero section" id="hero">
+    <div class="hero-content">
+      <div class="eyebrow">We engineer high-performance websites</div>
+      <h1>We Engineer High-Performance Websites That Convert Visitors Into Revenue.</h1>
+      <p class="hero-description">
+        Zorfine Teach builds bespoke, lightning-fast digital flagships for modern enterprises, venture-backed innovators, and market leaders. Elevate brand credibility, dominate technical SEO, and multiply qualified pipeline.
+      </p>
+      <div class="hero-cta">
+        <a href="#form" class="btn btn-primary">Schedule Free Audit</a>
+        <a href="#case-studies" class="btn btn-secondary">View Case Studies →</a>
+      </div>
+      <div class="trust-badges">
+        <div class="badge">Trusted by Fortune 500 enterprises</div>
+        <div class="badge">98+ Lighthouse scores guaranteed</div>
+        <div class="badge">Industry-leading conversion rates</div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="window-bar">
+        <div class="window-dot"></div>
+        <div class="window-dot"></div>
+        <div class="window-dot"></div>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric">
+          <div class="metric-label">Load Time</div>
+          <div class="metric-value">0.4s</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">SEO Score</div>
+          <div class="metric-value">98</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Conversion</div>
+          <div class="metric-value">+312%</div>
+        </div>
+      </div>
+      <div class="chart-line"></div>
+      <div style="color: var(--text-muted); font-size: 13px; display: flex; gap: 16px;">
+        <span>✓ API Response: 45ms</span>
+        <span>✓ Cache Hit Rate: 94%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section class="social-proof">
+    <div class="stat">
+      <div class="stat-number">200+</div>
+      <div class="stat-label">Enterprise Clients</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">$2.4B</div>
+      <div class="stat-label">Revenue Generated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">98+</div>
+      <div class="stat-label">Avg Lighthouse</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">12 yrs</div>
+      <div class="stat-label">Industry Experience</div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services section" id="services">
+    <div class="section-header">
+      <div class="section-eyebrow">Expertise</div>
+      <h2>Architected for Speed.<br>Calibrated for Conversions.</h2>
+      <p>Deep technical rigor meets elite aesthetic sensibility. We don't build websites—we engineer revenue machines.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-header">
+          <span class="service-number">01</span>
+          <div class="service-icon">⚡</div>
+        </div>
+        <h3>Bespoke Web Application & Flagship Site Engineering</h3>
+        <p class="service-description">
+          Full-stack bespoke web platforms engineered with Next.js, React, and modular headless content infrastructure. Pure performance, clean component architectures, and scalable codebase ownership.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Next.js 14</span>
+          <span class="tag">React</span>
+          <span class="tag">Headless CMS</span>
+          <span class="tag">TypeScript</span>
+        </div>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <span class="service-number">02</span>
+          <div class="service-icon">🎨</div>
+        </div>
+        <h3>Conversion-Engineered UI/UX & Design Systems</h3>
+        <p class="service-description">
+          Meticulously planned user journeys designed to eliminate decision friction. We build world-class tokenized design systems in Figma that seamlessly translate into production-ready frontends.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Figma Design</span>
+          <span class="tag">User Research</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">A/B Testing</span>
+        </div>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <span class="service-number">03</span>
+          <div class="service-icon">🔍</div>
+        </div>
+        <h3>Extreme Performance & Technical SEO Rigor</h3>
+        <p class="service-description">
+          Eliminate layout shifts, sluggish load times, and mobile rendering penalties. We guarantee 98+ Google Lighthouse scores across desktop and mobile, giving you an unfair SEO advantage.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Core Web Vitals</span>
+          <span class="tag">Technical SEO</span>
+          <span class="tag">Performance</span>
+          <span class="tag">CDN</span>
+        </div>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <span class="service-number">04</span>
+          <div class="service-icon">🛒</div>
+        </div>
+        <h3>Headless Commerce & High-Volume Scaling</h3>
+        <p class="service-description">
+          Decoupled storefronts designed for instantaneous checkouts, multi-currency localization, and resilient traffic-spike handling during high-stakes enterprise and DTC product drops.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Shopify Plus</span>
+          <span class="tag">Payment Processing</span>
+          <span class="tag">Multi-currency</span>
+          <span class="tag">Scaling</span>
+        </div>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section class="case-studies section" id="case-studies">
+    <div class="section-header">
+      <div class="section-eyebrow">Track Record</div>
+      <h2>Selected Flagship Case Studies</h2>
+    </div>
+
+    <div class="case-studies-grid">
+      <div class="case-study">
+        <div class="case-study-image">Aura Neural Platform</div>
+        <div class="case-study-content">
+          <span class="case-study-label">AI/ML Platform</span>
+          <h3>Aura Neural — Cognitive Intelligence Platform Re-Engineering</h3>
+          <p class="case-study-description">
+            Replaced an outdated, slow WordPress setup with a bespoke Next.js 14 architecture featuring an interactive real-time node visualizer. Streamlined the enterprise buyer journey, drastically cutting latency.
+          </p>
+          <div class="case-study-metrics">
+            <div class="case-metric">
+              <div class="case-metric-value">+312%</div>
+              <div class="case-metric-label">Qualified Inquiries</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">0.42s</div>
+              <div class="case-metric-label">Render Time</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">100/100</div>
+              <div class="case-metric-label">Lighthouse</div>
+            </div>
+          </div>
+          <div class="case-study-stack">Stack: Next.js, WebGL Shader, Tailwind, Sanity</div>
+        </div>
+      </div>
+
+      <div class="case-study">
+        <div class="case-study-image">Vanguard Asset Portal</div>
+        <div class="case-study-content">
+          <span class="case-study-label">Financial Tech</span>
+          <h3>Vanguard Asset Portal</h3>
+          <p class="case-study-description">
+            Institutional portal processing $80M+ per month with real-time portfolio telemetry, zero-latency state synchronization, and Swiss-inspired dark typography.
+          </p>
+          <div class="case-study-metrics">
+            <div class="case-metric">
+              <div class="case-metric-value">8ms</div>
+              <div class="case-metric-label">Data Latency</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">47K+</div>
+              <div class="case-metric-label">Transactions/Day</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">99.9%</div>
+              <div class="case-metric-label">Uptime</div>
+            </div>
+          </div>
+          <div class="case-study-stack">Stack: Next.js, PostgreSQL, Redis, Stripe API</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-studies-grid" style="margin-top: 32px;">
+      <div class="case-study">
+        <div class="case-study-image">Luminary Global Store</div>
+        <div class="case-study-content">
+          <span class="case-study-label">DTC Commerce</span>
+          <h3>Luminary Goods Global Store</h3>
+          <p class="case-study-description">
+            Headless Shopify Plus re-platforming across 14 currencies. Reduced mobile checkout abandonment with sub-second page transitions and seamless Apple Pay integration.
+          </p>
+          <div class="case-study-metrics">
+            <div class="case-metric">
+              <div class="case-metric-value">+67%</div>
+              <div class="case-metric-label">Cart Completion</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">88ms</div>
+              <div class="case-metric-label">Global Response</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">$4.2M</div>
+              <div class="case-metric-label">First Month Revenue</div>
+            </div>
+          </div>
+          <div class="case-study-stack">Stack: Shopify Plus, Next.js, Stripe, Contentful</div>
+        </div>
+      </div>
+
+      <div class="case-study">
+        <div class="case-study-image">Enterprise Platform</div>
+        <div class="case-study-content">
+          <span class="case-study-label">Enterprise SaaS</span>
+          <h3>MarTech Platform Launch</h3>
+          <p class="case-study-description">
+            Complete rebrand and architectural overhaul for a Series B martech platform. Built real-time campaign dashboard with WebSocket synchronization and advanced data visualization.
+          </p>
+          <div class="case-study-metrics">
+            <div class="case-metric">
+              <div class="case-metric-value">2.1K+</div>
+              <div class="case-metric-label">Enterprise Users</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">15ms</div>
+              <div class="case-metric-label">Dashboard Load</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">$8M</div>
+              <div class="case-metric-label">ARR Increase</div>
+            </div>
+          </div>
+          <div class="case-study-stack">Stack: Next.js, WebSocket, TiDB, React Query</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process section" id="process">
+    <div class="section-header">
+      <div class="section-eyebrow">Methodology</div>
+      <h2>Our Battle-Tested Workflow</h2>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-step-number">01</div>
+        <h4>Conversion & Tech Audit</h4>
+        <p class="process-step-description">
+          Comprehensive analysis of user drop-offs, Core Web Vitals, competitor tech moats, and technical SEO architecture.
+        </p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-number">02</div>
+        <h4>Bespoke UI/UX Systems</h4>
+        <p class="process-step-description">
+          Complete high-fidelity Figma components, responsive interactive prototypes, and typography calibrations built for trust.
+        </p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-number">03</div>
+        <h4>Full-Stack Production</h4>
+        <p class="process-step-description">
+          Clean Next.js implementation, headless CMS wiring, smooth micro-interactions, and secure API integrations.
+        </p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-number">04</div>
+        <h4>Audit & Global Launch</h4>
+        <p class="process-step-description">
+          Lighthouse 100 verification, penetration audits, edge caching fine-tuning, and zero-downtime DNS deployment.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing section" id="pricing">
+    <div class="section-header">
+      <div class="section-eyebrow">Investment Tiers</div>
+      <h2>Scale to Match Your Ambition</h2>
+      <p>Enterprise-grade engineering at every tier. Pick the scope that matches your current runway and growth trajectory.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Velocity</h3>
+          <div class="pricing-price">$18K</div>
+          <div class="pricing-period">3-week sprint</div>
+        </div>
+        <p class="pricing-description">
+          Ideal for funded startups needing a rapid, high-converting product launchpad with razor-sharp credibility.
+        </p>
+        <ul class="pricing-features">
+          <li>High-fidelity Figma design system</li>
+          <li>Next.js 14 frontend implementation</li>
+          <li>Core Web Vitals optimization</li>
+          <li>Mobile-first responsive design</li>
+          <li>Basic SEO setup</li>
+        </ul>
+        <button class="pricing-cta">Schedule Consultation</button>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">MOST POPULAR</div>
+        <div class="pricing-header">
+          <h3>Enterprise</h3>
+          <div class="pricing-price">$42K</div>
+          <div class="pricing-period">8-week engagement</div>
+        </div>
+        <p class="pricing-description">
+          Our gold-standard complete flagship overhaul. Extreme performance, custom interactive motion, and headless CMS.
+        </p>
+        <ul class="pricing-features">
+          <li>Complete design system in Figma</li>
+          <li>Next.js + headless CMS architecture</li>
+          <li>Lighthouse 100 guaranteed</li>
+          <li>Advanced micro-interactions</li>
+          <li>Real-time analytics dashboard</li>
+          <li>Full technical SEO audit & implementation</li>
+        </ul>
+        <button class="pricing-cta">Get Started Today</button>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Premium</h3>
+          <div class="pricing-price">Custom</div>
+          <div class="pricing-period">12+ week program</div>
+        </div>
+        <p class="pricing-description">
+          For complex web apps, high-throughput ecommerce, and international enterprises with stringent compliance requirements.
+        </p>
+        <ul class="pricing-features">
+          <li>Multi-region architecture design</li>
+          <li>Advanced headless commerce</li>
+          <li>Real-time synchronization</li>
+          <li>Machine learning integration</li>
+          <li>24/7 technical support</li>
+          <li>Enterprise security audits</li>
+        </ul>
+        <button class="pricing-cta">Contact Sales Team</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials section" id="testimonials">
+    <div class="section-header">
+      <div class="section-eyebrow">Social Proof</div>
+      <h2>What Technical Leaders Say</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <p class="testimonial-text">
+          "Zorfine Teach is not a conventional web agency. They operate like principal software architects who also possess an elite aesthetic sensibility. Our initial render dropped to 0.3s, and our Series B investor diligence was smooth because our flagship felt like an Apple-grade artifact."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar"></div>
+          <div class="author-info">
+            <div class="author-name">Sarah Chen</div>
+            <div class="author-title">CTO, Aura AI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <p class="testimonial-text">
+          "Conversion went from 1.8% to 5.4% within 30 days of deploying the new Next.js architecture. The ROI was realized in the first three weeks. They didn't just build a website—they engineered a revenue accelerator."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar"></div>
+          <div class="author-info">
+            <div class="author-name">Marcus Rodriguez</div>
+            <div class="author-title">VP Growth, Luminary</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <p class="testimonial-text">
+          "We migrated away from an unwieldy Webflow stack to Zorfine's custom code pipeline. Our team can now publish dynamic localized landing pages in minutes, and our mobile bounce rates plummeted by 41%. Indispensable engineering partners."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar"></div>
+          <div class="author-info">
+            <div class="author-name">Elena Vasquez</div>
+            <div class="author-title">Head of Product, DataFlow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section section" id="form">
+    <div class="form-container">
+      <div class="form-content">
+        <h2>Ready to Turn Your Website into an Enterprise Revenue Engine?</h2>
+        <p>
+          Schedule a 30-minute high-level architectural diagnostic with our founding engineers. We will analyze your current speed bottlenecks, conversion leakages, and map out a concrete roadmap.
+        </p>
+
+        <div class="form-benefits">
+          <div class="benefit">No obligations. Completely confidential analysis.</div>
+          <div class="benefit">Detailed performance roadmap specific to your stack.</div>
+          <div class="benefit">Clear next steps and investment scope.</div>
+        </div>
+
+        <div class="form-promo">
+          <div class="form-promo-icon">🎁</div>
+          <div class="form-promo-text">
+            <strong>Free audit for ₹1</strong> — Get a full technical assessment of your website's conversion potential.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-wrapper">
+        <form id="auditForm">
+          <div class="form-group">
+            <label class="form-label">Full Name / Role</label>
+            <input
+              type="text"
+              class="form-input"
+              id="name"
+              name="name"
+              placeholder="Alex Mercer, Founder & CEO"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Work Email Address</label>
+            <input
+              type="email"
+              class="form-input"
+              id="email"
+              name="email"
+              placeholder="alex@company.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              class="form-input"
+              id="phone"
+              name="phone"
+              placeholder="+91 9876543210"
+              required
+            />
+          </div>
+
+          <button type="submit" class="form-submit" id="submitBtn">
+            Schedule Free Audit
+            <span>→</span>
+          </button>
+
+          <a href="https://payments.cashfree.com/forms/getaudit" target="_blank" class="payment-button">
+            Pay ₹1 for Full Audit
+          </a>
+
+          <div class="form-message" id="formMessage"></div>
+          <p class="form-note">We'll be in touch within 2 business hours.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Zorfine Teach. High-Performance Websites That Convert. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_KXkHhlPHXEjm7NCLx_vATaV2livOfIv7af3SkfXlnk74WJr4-IuhRY66PALaSHmF0w/exec';
+
+    const form = document.getElementById('auditForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!name || !email || !phone) {
+        showError('Please fill in all required fields.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      formMessage.className = '';
+      formMessage.textContent = '';
+
+      try {
+        const url = SCRIPT_URL + '?' + new URLSearchParams({ name, email, phone });
+        await fetch(url, { method: 'GET', mode: 'no-cors' })
+          .then(() => {
+            showSuccess('✓ Request submitted! We\'ll contact you within 2 hours.');
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Schedule Free Audit →';
+          })
+          .catch(() => {
+            showError('Connection error. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Schedule Free Audit →';
+          });
+      } catch (err) {
+        showError('An unexpected error occurred.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Schedule Free Audit →';
+      }
+    });
+
+    function showSuccess(message) {
+      formMessage.className = 'form-message success';
+      formMessage.textContent = message;
+    }
+
+    function showError(message) {
+      formMessage.className = 'form-message error';
+      formMessage.textContent = message;
+    }
+  </script>
+</body>
+</html>
